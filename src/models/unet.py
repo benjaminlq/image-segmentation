@@ -51,7 +51,7 @@ class UNet(nn.Module):
         self.up1 = torch.utils.checkpoint(self.up1)
         self.up2 = torch.utils.checkpoint(self.up2)
         self.up3 = torch.utils.checkpoint(self.up3)
-        self.up4 = torch.utils.checkpoint(self.up4)
+        self.up4 = torch.utils.checkpoint(self.up4)s
         self.out = torch.utils.checkpoint(self.out)
         
 if __name__ == "__main__":
