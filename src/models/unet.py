@@ -3,7 +3,7 @@ import torch.nn as nn
 from torchvision import transforms
 from typing import Tuple
 from blocks import DoubleConv, Down, Up
-from configs import DEVICE
+from config import DEVICE
 
 class UNet(nn.Module):
     def __init__(

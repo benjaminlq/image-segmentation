@@ -8,7 +8,7 @@ __pycache__/
 
 # Data/Artifacts
 data/
-artifacts/
+ckpt/
 
 # Distribution / packaging
 .Python

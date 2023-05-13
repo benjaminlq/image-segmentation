@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-import configs
+import config
 from typing import Optional
 from tqdm import tqdm
 
@@ -29,7 +29,7 @@ def train(
     trainloader = datamanager.trainloader()
     valloader = datamanager.valloader()
     
-    model.to(configs.DEVICE)
+    model.to(config.DEVICE)
     
     best_loss = float("inf")
     patience_counter = 0
@@ -39,8 +39,8 @@ def train(
         tk0 = tqdm(trainloader, total=len(trainloader))
         epoch_loss = 0
         for batch_idx, (imgs, labels) in enumerate(tk0):
-            imgs = imgs.to(configs.DEVICE)
-            labels = labels.to(configs.DEVICE)
+            imgs = imgs.to(config.DEVICE)
+            labels = labels.to(config.DEVICE)
             
             optimizer.zero_grad()
             
@@ -62,7 +62,7 @@ def train(
         
         if eval_loss < best_loss:
             # save_model
-            ckpt_path = os.path.join(configs.ARTIFACT_PATH, "best.ckpt")
+            ckpt_path = os.path.join(config.ARTIFACT_PATH, "best.ckpt")
             print(f"Eval loss improved from {best_loss} to {eval_loss}. Model saved at {ckpt_path}.")
             best_loss = eval_loss
             patience_counter = 0
@@ -83,8 +83,8 @@ def eval(model, valloader):
     epoch_loss = 0
     preds, labels = [], []
     for imgs, batch_labels in enumerate(tk0):
-        imgs = imgs.to(configs.DEVICE)
-        labels = labels.to(configs.DEVICE)
+        imgs = imgs.to(config.DEVICE)
+        labels = labels.to(config.DEVICE)
         
         outs = model(imgs)
         loss = criterion(batch_labels, outs)
